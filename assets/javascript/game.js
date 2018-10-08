@@ -1,4 +1,4 @@
-
+// main object that contain all var and functions
 var obj = {
   userText: document.getElementById("text"),
   words: [
@@ -23,6 +23,7 @@ var obj = {
   guessRemain: 5,
   letterGuess: "",
   letterSmall: "",
+  // function gives random word and add image for this word
   randomWord: function() {
     var randomW = this.words[Math.floor(Math.random() * this.words.length)];
     var imageIndex = this.words.indexOf(randomW);
@@ -31,6 +32,7 @@ var obj = {
     randomW = randomW.split("");
     return randomW;
   },
+  // make dashed word 
   dashedWord: function(word) {
     var dashWord = [];
     for (i = 0; i < word.length; i++) {
@@ -38,7 +40,7 @@ var obj = {
     }
     return dashWord;
   },
-
+//shows pressed letter
   guessed: function(choose) {
     var check = this.letterSmall.indexOf(choose);
 
@@ -49,6 +51,7 @@ var obj = {
       this.indexFunct(choose);
     }
   },
+  // checks letter and shows letter in dashed string or count wrong guesses
   indexFunct: function(choose) {
     var index = word.indexOf(choose);
 
@@ -63,6 +66,7 @@ var obj = {
       this.guessRemain--;
     }
   },
+  // shows everything on the screen
   screenText: function() {
     this.userText.innerHTML =
       "<h1>Press any key to get started!</h1><br><p>Looses: " +
@@ -85,7 +89,7 @@ var dashWord = obj.dashedWord(word);
 obj.screenText();
 
 document.onkeyup = press;
-
+// main function which  call all function
 function press(event) {
   var choose = event.key;
   obj.guessed(choose);
